@@ -19,8 +19,6 @@ public class BulletLifeSystem : MonoBehaviour
 
     public void AddProjectile()
     {
-        Debug.Log("Creat");
-
         bull = diContainer.InstantiatePrefab(defaultPrefabBullet);
         bull.transform.position = spawnPosition.transform.position;
         bull.transform.rotation = spawnPosition.transform.rotation;

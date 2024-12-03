@@ -18,7 +18,6 @@ public class MiniBulletBehaviour : Bullet
         }
         
         Move();
-        Debug.Log(timer);
 
         timerToFly += Time.deltaTime;
     }
@@ -59,7 +58,6 @@ public class MiniBulletBehaviour : Bullet
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Destroy");
         if (collision.gameObject.tag == "Ground")
         {
             Detonation();
