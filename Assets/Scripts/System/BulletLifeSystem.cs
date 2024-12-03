@@ -10,6 +10,7 @@ public class BulletLifeSystem : MonoBehaviour
     [SerializeField] private GameObject defaultPrefabBullet;
     [SerializeField] private GameObject miniPrefabBullet;
     [Inject] DiContainer diContainer;
+    [Inject] EffectSystem effectSystem;
 
     private List<GameObject> bulletsList = new List<GameObject>();
 
@@ -53,10 +54,10 @@ public class BulletLifeSystem : MonoBehaviour
                         AddProjectile(sharePart);
                     }
 
+                    effectSystem.startEffect(bulletsList[i], "Boom");
+
                     bulletsList.Remove(bulletsList[i]);
                     Destroy(bullObject);
-
-                    
                 }
             }
         }

@@ -6,6 +6,9 @@ using Zenject.Asteroids;
 
 public class MiniBulletBehaviour : Bullet
 {
+    private bool findGround = false;
+    private float timer;
+    private float timerToFly;
 
     private void Update()
     {
@@ -20,29 +23,10 @@ public class MiniBulletBehaviour : Bullet
         timerToFly += Time.deltaTime;
     }
 
-    private bool findGround = false;
-    private float timer;
-    private float timerToFly;
-
-    private Rigidbody2D rb;
     protected override void Move()
     {
-        //transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
-        //rb.AddForce(Vector3.right * moveSpeed * Time.deltaTime);
-
-        //transform.Translate(0, -moveSpeed * Time.deltaTime, 0);
-
-        //transform.eulerAngles += new Vector3(0, 0, -100 * Time.deltaTime);
-
         transform.position += transform.TransformDirection(Vector2.right) * Time.deltaTime * moveSpeed;
-        /*
-        gameObject.TryGetComponent<Rigidbody2D>(out rb);
-        rb.AddForce(Vector2.right * Time.deltaTime * moveSpeed);
-        */
 
-        //transform.eulerAngles += new Vector3(0, 0, -100 * Time.deltaTime);
-
-        
         if (findGround == false)
         {
             transform.eulerAngles += new Vector3(0, 0, -50 * Time.deltaTime);
@@ -52,14 +36,6 @@ public class MiniBulletBehaviour : Bullet
         {
             transform.eulerAngles += new Vector3(0, 0, -50 * Time.deltaTime);
         }
-        
-
-        /*
-        else
-        {
-            transform.eulerAngles += new Vector3(0, 0, -50 * Time.deltaTime);
-        }
-        */
 
         if (timerToFly >= 0.3f)
         {
@@ -72,12 +48,8 @@ public class MiniBulletBehaviour : Bullet
                     Debug.Log(hit.collider);
                     findGround = true;
                 }
-        
             }
         }
-        
-       
-
     }
 
     protected override void Detonation()
